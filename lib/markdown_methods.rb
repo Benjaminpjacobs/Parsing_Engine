@@ -122,15 +122,8 @@
     recombine(input)
   end
 
-
   def recombine(input)
     input.map! {|x| x.kind_of?(Array) ? x.join(' ') : x}
   end
 
-
-  # def strong(input)
-  #   input.gsub!("* ", "</strong> ")
-  #   input.gsub!(" *", " <strong>")
-  #   input.gsub!("*", "<strong>")
-  # end
 
