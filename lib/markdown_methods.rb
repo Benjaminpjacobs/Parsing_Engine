@@ -130,7 +130,7 @@
     input.map! {|x| x.kind_of?(Array) ? x.join(' ') : x}
   end
 
-  def ordered_lists_items(input)
+  def unordered_lists_items(input)
     input.each_with_index.map do |x, idx|
         if x.include?("\n") == true || x.include?("<h") == true
           x
@@ -143,19 +143,15 @@
       end
   end
 
-  def ordered_lists_tag_open(input)
+  def unordered_lists_tag_open(input)
     input.each_with_index do |x, idx|
-        x.include?("<li>") && input[idx-1] == "\n\n" ? input.insert(idx, "<ol>\n") : x
+        x.include?("<li>") && input[idx-1] == "\n\n" ? input.insert(idx, "<ul>\n") : x
       end
   end
 
-    def ordered_lists_tag_close(input)
+    def unordered_lists_tag_close(input)
     input.each_with_index do |x, idx|
-        if x.include?("<li>") && input[idx-2].include?("<li>") && (input[idx+2].nil? ||input[idx+2].include?("<li>") != true) 
-          input.insert(idx+1,"\n</ol>" )
-        else
-          x
-        end
+      x.include?("<li>") && input[idx-2].include?("<li>") && (input[idx+2].nil? ||input[idx+2].include?("<li>") != true) ? input.insert(idx+1,"\n</ul>" ) : x
       end
   end
   
