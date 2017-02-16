@@ -74,22 +74,46 @@
       end
   end
 
+  # def paragraphs(input)
+  #     input.each_with_index.map do |x, idx|
+  #       if x.include?("\n") == true || x.include?("<h") == true || x.include?("<li>")
+  #         x
+  #       elsif input[idx-1] == "\n\n" && input[idx+1] == "\n"
+  #         x.insert(0, "<p>\n")
+  #       elsif input[idx-1]=="\n" && input[idx-2].include?("<h") && (idx+1) > (input.length-1)
+  #         x.insert(0, "<p>\n"); x.insert(-1, "\n</p>")
+  #       elsif input[idx-1]== "\n" && (idx+1) > (input.length-1)
+  #         x.insert(-1, "\n</p>")
+  #       elsif input[idx-1] == "\n" && input[idx+1] == "\n\n"
+  #         x.insert(-1, "\n</p>")
+  #       elsif input[idx-1]=="\n" && input[idx+1]=="\n"
+  #         x
+  #       else
+  #         x.insert(0, "<p>\n"); x.insert(-1, "\n</p>")
+  #       end
+  #     end      
+  # end
+
   def paragraphs(input)
       input.each_with_index.map do |x, idx|
-        if x.include?("\n") == true || x.include?("<h") == true
+        if x.include?("\n") == true || x.include?("<h") == true || x.include?("<li>")
           x
+        elsif input[idx-1] == "\n\n" && input[idx+1] == "\n\n"
+          x.insert(0, "<p>"); x.insert(-1, "</p>")
         elsif input[idx-1] == "\n\n" && input[idx+1] == "\n"
-          x.insert(0, "<p>\n")
-        elsif input[idx-1]=="\n" && input[idx-2].include?("<h") && (idx+1) > (input.length-1)
-          x.insert(0, "<p>\n"); x.insert(-1, "\n</p>")
+          x.insert(0, "<p>")
+        elsif input[idx-1] == "\n" && input[idx+1] == "\n\n"
+          x.insert(-1, "</p>")
+        elsif input[idx-1]=="\n" && input[idx-2].include?("<h")
+          x.insert(0, "<p>"); x.insert(-1, "</p>")
         elsif input[idx-1]== "\n" && (idx+1) > (input.length-1)
           x.insert(-1, "\n</p>")
-        elsif input[idx-1]=="\n" && input[idx+1]=="\n"
+        elsif input[idx-1] == "\n" && input [idx+1]=="\n"
           x
         else
-          x.insert(0, "<p>\n"); x.insert(-1, "\n</p>")
+          x.insert(0, "<p>"); x.insert(-1, "</p>")
         end
-      end      
+      end
   end
 
   def emphasis_open(input)
@@ -125,5 +149,36 @@
   def recombine(input)
     input.map! {|x| x.kind_of?(Array) ? x.join(' ') : x}
   end
+
+  def ordered_lists_items(input)
+    input.each_with_index.map do |x, idx|
+        if x.include?("\n") == true || x.include?("<h") == true
+          x
+        elsif x[0..1] == "* " 
+          x.sub!("* ", "<li>")
+          x.insert(-1, "</li>")
+        else
+          x
+        end
+      end
+  end
+
+  def ordered_lists_tag_open(input)
+    input.each_with_index do |x, idx|
+        x.include?("<li>") && input[idx-1] == "\n\n" ? input.insert(idx, "<ol>\n") : x
+      end
+  end
+
+    def ordered_lists_tag_close(input)
+    input.each_with_index do |x, idx|
+        if x.include?("<li>") && input[idx-2].include?("<li>") && (input[idx+2].nil? ||input[idx+2].include?("<li>") != true) 
+          input.insert(idx+1,"\n</ol>" )
+        else
+          x
+        end
+      end
+  end
+  
+  
 
 

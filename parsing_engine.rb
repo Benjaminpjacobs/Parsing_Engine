@@ -13,7 +13,15 @@ input_file = File.open(input_file, 'r')
 lines_array << input_file.read
 
 split_by_double(lines_array); split_by_single(lines_array); headings(lines_array);
-emphasis(lines_array) ;strong(lines_array); paragraphs(lines_array)
+emphasis(lines_array); 
+ordered_lists_items(lines_array)
+ordered_lists_tag_open(lines_array)
+ordered_lists_tag_close(lines_array)
+strong(lines_array)
+paragraphs(lines_array)
+
+binding.pry
+
 
 
 output_file = File.open(destination_file, "w")
