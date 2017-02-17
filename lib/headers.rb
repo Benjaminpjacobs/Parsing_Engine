@@ -1,4 +1,4 @@
-def heading6(input)
+  def heading6(input)
     if input.include?("###### ")
       input["###### "] = "<h6>"
       input.insert(-1, "</h6>")

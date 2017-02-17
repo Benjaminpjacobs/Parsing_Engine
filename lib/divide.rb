@@ -3,13 +3,7 @@
   end
 
   def split_by_single(input)
-    input.map! do |x|
-      if x.include?("\n") && x != "\n\n"
-        x.split(/(\n)/)
-      else
-        x
-      end
-    end
+    input.map!{ |x| x.include?("\n") && x != "\n\n" ? x.split(/(\n)/) : x}
     input.flatten!
   end
 

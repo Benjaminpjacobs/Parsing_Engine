@@ -1,10 +1,10 @@
   def strong_open(input)
-      input.split.each{|x| x.sub!("*", "<strong>") if x[0] == "*"}
+    input.split.each{|x| x.sub!("*", "<strong>") if x[0] == "*"}
   end
 
   def strong_close(input)
-      input.split.each {|x| x.sub!("*", "</strong>") if x[-2..-1].nil? != true}
-      #  && x[-2.-1].include?("*")}
+    input.split.each {|x| x.sub!("*", "</strong>") if x[-2..-1].nil? != true}
+    #  && x[-2.-1].include?("*")}
   end
 
   def strong(input)
