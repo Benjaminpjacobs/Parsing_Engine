@@ -1,3 +1,5 @@
+class Ols
+
   def ordered_list_tag_open(input)
     input.each_with_index{|x, idx| x[0].to_i > 0 && input[idx-1] == "\n\n" ? input.insert(idx, "<ol>\n") : x}
   end
@@ -26,3 +28,10 @@
       end
     end
   end
+
+  def all(input)
+      ordered_list_tag_open(input); ordered_list_tag_close(input); ordered_list_item(input)
+  end
+
+end
+

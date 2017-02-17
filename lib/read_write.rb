@@ -1,12 +1,16 @@
-  def input(file)  
+class InOut
+
+  attr_accessor :lines_array
+
+  def read(input)  
     @lines_array = []
-    input = File.open(file, 'r')
-    @lines_array.push(input.read)
-    input.close
+    @lines_array.push(File.read(input))
   end
 
-  def write_file(input, destination)
+  def write(input, destination)
     output_file = File.open(destination, "w")
     output_file.write(input.join)
     output_file.close
   end
+  
+end

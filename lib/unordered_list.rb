@@ -1,3 +1,5 @@
+class Uols
+
   def unordered_list_item(input)
     input.each_with_index.map do |x, idx|
       if x.include?("\n") == true || x.include?("<h") == true
@@ -22,3 +24,9 @@
     x.include?("<li>") && input[idx-2].include?("<li>") && (input[idx+2].nil? || input[idx+2].include?("<li>") != true) ? input.insert(idx+1,"\n</ul>" ) : x
     end
   end
+
+  def all(input)
+      unordered_list_item(input); unordered_list_tag_open(input); unordered_list_tag_close(input)
+  end
+    
+end

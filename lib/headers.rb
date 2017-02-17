@@ -1,3 +1,5 @@
+class Headers
+ 
   def heading6(input)
     if input.include?("###### ")
       input["###### "] = "<h6>"
@@ -58,3 +60,5 @@
       heading3(x); heading2(x); heading1(x); 
       end
   end
+
+end 

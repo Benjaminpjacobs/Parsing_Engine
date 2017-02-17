@@ -7,19 +7,52 @@ require './lib/unordered_list.rb'
 require './lib/ordered_list.rb'
 require './lib/read_write.rb'
 
-require 'pry'
+
+class Parser
+
+  def input
+    InOut.new.read(ARGV[0])
+  end
+
+  def splits
+    Split.new.splits(input)
+  end
+
+  def heads
+    Headers.new.headings(splits)
+  end
+
+  def emp
+    Emphasize.new.emphasis(heads)
+  end
+
+  def bullets
+    Uols.new.all(emp)
+  end
+
+  def numbers
+    Ols.new.all(bullets)
+  end
+
+  def strength
+    Str.new.strong(numbers)
+  end
+
+  def graph
+    Para.new.paragraphs(strength)
+  end
+
+  def assemble
+    InOut.new.write(graph, ARGV[1])
+  end
+end
 
 unless ARGV.length == 2
   puts "Not the correct number of arguments"
   exit
 end
 
-input(ARGV[0]); split_by_double(@lines_array); split_by_single(@lines_array); headings(@lines_array);
-emphasis(@lines_array); unordered_list_item(@lines_array); unordered_list_tag_open(@lines_array);
-unordered_list_tag_close(@lines_array); ordered_list_tag_open(@lines_array); 
-ordered_list_tag_close(@lines_array); ordered_list_item(@lines_array); strong(@lines_array)
-paragraphs(@lines_array); write_file(@lines_array, ARGV[1])
-
+Parser.new.assemble
 
 puts "converted #{ARGV[0]} (#{File.foreach(ARGV[0]).count} lines) 
 to #{ARGV[1]} (#{File.foreach(ARGV[1]).count} lines) 

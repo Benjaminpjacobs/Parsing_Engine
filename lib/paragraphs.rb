@@ -1,3 +1,5 @@
+class Para
+
   def paragraphs(input)
     input.each_with_index.map do |x, idx|
       if x.include?("\n") == true || x.include?("<h") == true || x.include?("<li>")
@@ -19,3 +21,5 @@
       end
     end
   end
+
+end 
