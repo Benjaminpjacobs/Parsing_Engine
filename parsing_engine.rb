@@ -1,4 +1,11 @@
-require './lib/markdown_methods.rb'
+require './lib/divide.rb'
+require './lib/headers.rb'
+require './lib/paragraphs.rb'
+require './lib/emphasis.rb'
+require './lib/strong.rb'
+require './lib/unordered_list.rb'
+require './lib/ordered_list.rb'
+
 require 'pry'
 
 unless ARGV.length == 2
@@ -14,13 +21,18 @@ lines_array << input_file.read
 
 split_by_double(lines_array); split_by_single(lines_array); headings(lines_array);
 emphasis(lines_array); 
-unordered_lists_items(lines_array)
-unordered_lists_tag_open(lines_array)
-unordered_lists_tag_close(lines_array)
+unordered_list_item(lines_array)
+unordered_list_tag_open(lines_array)
+unordered_list_tag_close(lines_array)
+ordered_list_tag_open(lines_array)
+ordered_list_tag_close(lines_array)
+ordered_list_item(lines_array)
 strong(lines_array)
 paragraphs(lines_array)
 
-binding.pry
+# binding.pry
+
+
 
 
 
