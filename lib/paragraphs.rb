@@ -1,23 +1,27 @@
 class Para
 
-  def paragraphs(input)
-    input.each_with_index.map do |x, idx|
-      if x.include?("\n") == true || x.include?("<h") == true || x.include?("<li>")
-        x
-      elsif input[idx-1] == "\n\n" && input[idx+1] == "\n\n"
-        x.insert(0, "<p>"); x.insert(-1, "</p>")
-      elsif input[idx-1] == "\n\n" && input[idx+1] == "\n"
-        x.insert(0, "<p>")
-      elsif input[idx-1] == "\n" && input[idx+1] == "\n\n"
-        x.insert(-1, "</p>")
-      elsif input[idx-1]=="\n" && input[idx-2].include?("<h")
-        x.insert(0, "<p>"); x.insert(-1, "</p>")
-      elsif input[idx-1]== "\n" && (idx+1) > (input.length-1)
-        x.insert(-1, "</p>")
-      elsif input[idx-1] == "\n" && input [idx+1]=="\n"
-        x
+  def paragraphs(str_arr)
+    str_arr.each_with_index.map do |str, idx|
+      prev_line = str_arr[idx - 1]
+      next_line = str_arr[idx + 1]
+      prev_sec_line = str_arr[idx - 2]
+      if str.include?("\n") == true || str.include?("<h") == true || str.include?("<li>")
+        str
+      elsif prev_line == "\n\n" && next_line == "\n\n"
+        str.insert(0, "<p>"); str.insert(-1, "</p>")
+      elsif prev_line == "\n\n" && next_line == "\n"
+        str.insert(0, "<p>")
+      elsif prev_line == "\n" && next_line == "\n\n"
+        str.insert(-1, "</p>")
+      elsif prev_line == "\n" && prev_sec_line.include?("<h")
+        str.insert(0, "<p>"); str.insert(-1, "</p>")
+      elsif prev_line == "\n" && (idx+1) > (str_arr.length-1)
+        str.insert(-1, "</p>")
+      elsif prev_line == "\n" && next_line == "\n"
+        str
       else
-        x.insert(0, "<p>"); x.insert(-1, "</p>")
+        str.insert(0, "<p>")
+        str.insert(-1, "</p>")
       end
     end
   end

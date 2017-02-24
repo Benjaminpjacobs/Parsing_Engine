@@ -1,19 +1,23 @@
 class Emphasize
 
-  def emphasis_open(input)
-      input.split.each{|x| x.sub!("**", "<em>") if x[0..1] == "**"}
+  def emphasis_open(str_arr)
+    str_arr.split.each do |str| 
+    str.sub!("**", "<em>") if str[0..1] == "**"
+    end
   end
 
-  def emphasis_close(input)
-      input.split.each {|x| x.sub!("**", "</em>") if x[-3..-1].nil? != true && x[-3..-1].include?("**")}
+  def emphasis_close(str_arr)
+    str_arr.split.each do |str| 
+    end_chars = str[-3..-1]
+    str.sub!("**", "</em>") if end_chars.nil? != true && end_chars.include?("**")
+    end
   end
   
-  def emphasis(input)
-    input.map!{ |x| x.include?("**") ? emphasis_open(x): x}
-    Split.new.recombine(input)
-    input.map!{ |x| x.include?("**") ? emphasis_close(x): x}
-    Split.new.recombine(input)
+  def emphasis(str_arr)
+    str_arr.map! { |x| x.include?("**") ? emphasis_open(x) : x }
+    Split.new.recombine(str_arr)
+    str_arr.map! { |x| x.include?("**") ? emphasis_close(x) : x } 
+    Split.new.recombine(str_arr)
   end
 
 end
-  

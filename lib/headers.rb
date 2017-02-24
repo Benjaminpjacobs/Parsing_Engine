@@ -1,64 +1,68 @@
 class Headers
  
-  def heading6(input)
-    if input.include?("###### ")
-      input["###### "] = "<h6>"
-      input.insert(-1, "</h6>")
+  def heading6(str)
+    if str.include?("###### ")
+       str["###### "] = "<h6>"
+       str.insert(-1, "</h6>")
     else
-      input 
+       str 
     end  
   end
 
-  def heading5(input)
-    if input.include?("##### ")
-      input["##### "] = "<h5>"
-      input.insert(-1, "</h5>")
+  def heading5(str)
+    if str.include?("##### ")
+       str["##### "] = "<h5>"
+       str.insert(-1, "</h5>")
     else
-      input 
+       str 
     end
   end
 
-  def heading4(input)
-    if input.include?("#### ")
-      input["#### "] = "<h4>"
-      input.insert(-1, "</h4>")
+  def heading4(str)
+    if str.include?("#### ")
+       str["#### "] = "<h4>"
+       str.insert(-1, "</h4>")
     else
-      input 
+       str 
     end
   end
 
-  def heading3(input)
-    if input.include?("### ")
-      input["### "] = "<h3>"
-      input.insert(-1, "</h3>")
+  def heading3(str)
+    if str.include?("### ")
+       str["### "] = "<h3>"
+       str.insert(-1, "</h3>")
     else
-      input 
+       str 
     end
   end
 
-  def heading2(input)
-    if input.include?("## ")
-      input["## "] = "<h2>"
-      input.insert(-1, "</h2>")
+  def heading2(str)
+    if str.include?("## ")
+       str["## "] = "<h2>"
+       str.insert(-1, "</h2>")
     else
-      input 
+       str 
     end
   end
 
-  def heading1(input)
-    if input.include?("# ")
-      input["# "] = "<h1>"
-      input.insert(-1, "</h1>")
+  def heading1(str)
+    if str.include?("# ")
+       str["# "] = "<h1>"
+       str.insert(-1, "</h1>")
     else
-      input 
+       str 
     end
   end
 
-  def headings(input)
-      input.map do |x|
-      heading6(x); heading5(x); heading4(x); 
-      heading3(x); heading2(x); heading1(x); 
+  def headings(str_arr)
+    str_arr.map do |str|
+      heading6(str) 
+      heading5(str)
+      heading4(str) 
+      heading3(str) 
+      heading2(str) 
+      heading1(str)
       end
   end
-
+  
 end 

@@ -6,7 +6,7 @@ require './lib/strong.rb'
 require './lib/unordered_list.rb'
 require './lib/ordered_list.rb'
 require './lib/read_write.rb'
-
+require './lib/line_methods.rb'
 
 class Parser
 
