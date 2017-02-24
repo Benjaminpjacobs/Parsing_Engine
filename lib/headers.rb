@@ -2,55 +2,55 @@ class Headers
  
   def heading6(str)
     if str.include?("###### ")
-       str["###### "] = "<h6>"
-       str.insert(-1, "</h6>")
+      str["###### "] = "<h6>"
+      str.insert(-1, "</h6>")
     else
-       str 
+      str 
     end  
   end
 
   def heading5(str)
     if str.include?("##### ")
-       str["##### "] = "<h5>"
-       str.insert(-1, "</h5>")
+      str["##### "] = "<h5>"
+      str.insert(-1, "</h5>")
     else
-       str 
+      str 
     end
   end
 
   def heading4(str)
     if str.include?("#### ")
-       str["#### "] = "<h4>"
-       str.insert(-1, "</h4>")
+      str["#### "] = "<h4>"
+      str.insert(-1, "</h4>")
     else
-       str 
+      str 
     end
   end
 
   def heading3(str)
     if str.include?("### ")
-       str["### "] = "<h3>"
-       str.insert(-1, "</h3>")
+      str["### "] = "<h3>"
+      str.insert(-1, "</h3>")
     else
-       str 
+      str 
     end
   end
 
   def heading2(str)
     if str.include?("## ")
-       str["## "] = "<h2>"
-       str.insert(-1, "</h2>")
+      str["## "] = "<h2>"
+      str.insert(-1, "</h2>")
     else
-       str 
+      str 
     end
   end
 
   def heading1(str)
     if str.include?("# ")
-       str["# "] = "<h1>"
-       str.insert(-1, "</h1>")
+      str["# "] = "<h1>"
+      str.insert(-1, "</h1>")
     else
-       str 
+      str 
     end
   end
 
@@ -62,7 +62,7 @@ class Headers
       heading3(str) 
       heading2(str) 
       heading1(str)
-      end
+    end
   end
   
 end 

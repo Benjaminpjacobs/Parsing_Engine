@@ -46,4 +46,3 @@ class Ols
   end
 
 end
-

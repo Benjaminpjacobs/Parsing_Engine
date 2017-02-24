@@ -2,8 +2,8 @@ class Split
   
   def splits(input)
     input.map!{ |x| x.split(/(\n\n)/)}.flatten!
-    .map!{ |x| x.include?("\n") && x != "\n\n" ? x.split(/(\n)/) : x }
-    input.flatten!
+      .map!{ |x| x.include?("\n") && x != "\n\n" ? x.split(/(\n)/) : x }
+      input.flatten!
   end
 
   def recombine(str_arr)

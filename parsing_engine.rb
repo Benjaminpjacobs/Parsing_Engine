@@ -6,7 +6,7 @@ require './lib/strong.rb'
 require './lib/unordered_list.rb'
 require './lib/ordered_list.rb'
 require './lib/read_write.rb'
-require './lib/line_methods.rb'
+require './lib/line_module.rb'
 
 class Parser
 
@@ -45,6 +45,7 @@ class Parser
   def assemble
     InOut.new.write(graph, ARGV[1])
   end
+  
 end
 
 unless ARGV.length == 2
@@ -57,4 +58,3 @@ Parser.new.assemble
 puts "converted #{ARGV[0]} (#{File.foreach(ARGV[0]).count} lines) 
 to #{ARGV[1]} (#{File.foreach(ARGV[1]).count} lines) 
 at #{Time.now}" 
-
