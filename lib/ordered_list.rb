@@ -1,21 +1,20 @@
+require './lib/linemodule.rb'
+
 class Ols
-  
+  include Lines
+
   def ordered_list_tag_open(str_arr)
     str_arr.each_with_index do |str, idx| 
-      prev_line = str_arr[idx - 1]
-      str[0].to_i > 0 && prev_line == "\n\n" ? 
+      str[0].to_i > 0 && prev_line(str_arr, idx, 1) == "\n\n" ? 
       str_arr.insert( idx, "<ol>\n" ) : str
     end
   end
         
   def ordered_list_tag_close(str_arr)
     str_arr.each_with_index do |str, idx|
-      sec_next_line = str_arr[idx + 2]
-      sec_prev_line = str_arr[idx - 2]
-      next_line = str_arr[idx + 1]
-      str[0].to_i > 0 && sec_prev_line[0].to_i > 0 && 
-      ( sec_next_line.nil? || sec_next_line == 0 || 
-      next_line == "\n\n" ) ? 
+      str[0].to_i > 0 && prev_line(str_arr, idx, 2)[0].to_i > 0 && 
+      (next_line(str_arr, idx, 2).nil? || next_line(str_arr, idx, 2) == 0 || 
+      next_line(str_arr, idx, 1) == "\n\n" ) ? 
       str_arr.insert( idx + 1,"\n</ol>" ) : str  
     end
   end
