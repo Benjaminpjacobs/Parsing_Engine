@@ -40,7 +40,7 @@ class Parser
 
   def images
     Image.new.search_for_image(strength)
-  ends
+  end
 
   def graph
     Para.new.paragraphs(images)
