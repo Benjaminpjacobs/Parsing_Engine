@@ -7,6 +7,7 @@ require './lib/unordered_list.rb'
 require './lib/ordered_list.rb'
 require './lib/read_write.rb'
 require './lib/images.rb'
+require './lib/links.rb'
 
 class Parser
 
@@ -42,8 +43,12 @@ class Parser
     Image.new.search_for_image(strength)
   end
 
+  def links
+    Link.new.search_for_links(images)
+  end
+  
   def graph
-    Para.new.paragraphs(images)
+    Para.new.paragraphs(links)
   end
 
   def assemble
