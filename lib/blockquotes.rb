@@ -7,13 +7,16 @@ class Blockquotes
    string.sub!(">", '')
    string.sub!(' ', '')
   end
+
+  def endquote(arr, idx)
+    arr.drop(idx).find_index{ |str| str.include?("</p>") } + idx
+  end
   
   def lazy_insert_bq_open_and_close(arr)
     arr.each_with_index do |str, idx|
       if str.include?("<p>>")
         str.sub!("<p>>", "<blockquote>")
-        endquote = (idx + 1) + (arr.drop(idx+1).find_index{|str| str.include?("</p>")})
-        arr[endquote].sub!("</p>", "</blockquote>")
+        arr[endquote(arr, idx)].sub!("</p>", "</blockquote>")
       else
         str
       end
