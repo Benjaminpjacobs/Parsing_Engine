@@ -8,6 +8,7 @@ require './lib/ordered_list.rb'
 require './lib/read_write.rb'
 require './lib/images.rb'
 require './lib/links.rb'
+require './lib/blockquotes.rb'
 
 class Parser
 
@@ -51,8 +52,12 @@ class Parser
     Para.new.paragraphs(links)
   end
 
+  def bqs
+    Blockquotes.new.implement_bq(graph)
+  end
+  
   def assemble
-    InOut.new.write(graph, ARGV[1])
+    InOut.new.write(bqs, ARGV[1])
   end
   
 end
