@@ -9,6 +9,7 @@ require './lib/read_write.rb'
 require './lib/images.rb'
 require './lib/links.rb'
 require './lib/blockquotes.rb'
+require './lib/codeblocks.rb'
 
 class Parser
 
@@ -56,8 +57,12 @@ class Parser
     Blockquotes.new.implement_bq(graph)
   end
   
+  def cbs
+    CodeBlock.new.implement_cb(bqs)
+  end
+  
   def assemble
-    InOut.new.write(bqs, ARGV[1])
+    InOut.new.write(cbs, ARGV[1])
   end
   
 end
